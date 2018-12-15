@@ -2,6 +2,8 @@ import { SubirPage } from './../subir/subir';
 import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -9,9 +11,13 @@ import { ModalController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(private modalCtrl:ModalController) {
+  posts: Observable<any[]>;
 
+  constructor(private modalCtrl:ModalController, afDB: AngularFireDatabase) {
+
+    this.posts = afDB.list('post').valueChanges();
   }
+
 
   irPageSubir(){
 

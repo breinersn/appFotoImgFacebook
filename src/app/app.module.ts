@@ -9,6 +9,22 @@ import { HomePage } from '../pages/home/home';
 
 import  {SubirPage} from '../pages/subir/subir';
 
+//firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+// Initialize Firebase
+var firebaseConfig = {
+  apiKey: "AIzaSyC96V8e-z7__gQ7LtM3FVgay3n1ilXgaVU",
+  authDomain: "gag-ac1a9.firebaseapp.com",
+  databaseURL: "https://gag-ac1a9.firebaseio.com",
+  projectId: "gag-ac1a9",
+  storageBucket: "gag-ac1a9.appspot.com",
+  messagingSenderId: "65417542523"
+};
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -17,7 +33,10 @@ import  {SubirPage} from '../pages/subir/subir';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,6 +47,7 @@ import  {SubirPage} from '../pages/subir/subir';
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

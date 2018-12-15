@@ -17,18 +17,19 @@
 
 <ion-content >
 
-  <ion-list>
+  <ion-list *ngFor="let post of posts | async">
 
-    <ion-item>
+    <ion-item >
+
       <ion-label floating>Titulo</ion-label>
       <ion-input type="text" value=""></ion-input>
     </ion-item>
 
     <ion-item>
-      <img src="http://k30.kn3.net/taringa/3/8/B/C/A/9/NegroGinez/9BE.jpg">
+      <img [src]="post.img">
     </ion-item>
 
-  </ion-list>
+
 
   <ion-grid>
     <ion-row>
@@ -37,5 +38,5 @@
       <ion-col><button ion-button block><ion-icon name="camera">Camara</ion-icon></button></ion-col>
     </ion-row>
   </ion-grid>
-
+</ion-list>
 </ion-content>
