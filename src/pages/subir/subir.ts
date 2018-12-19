@@ -11,6 +11,8 @@ import { Observable } from 'rxjs/Observable';
 export class SubirPage {
   posts: Observable<any[]>;
 
+  titulo: string;
+
   constructor(private viewCtrl:ViewController, afDB: AngularFireDatabase) {
     this.posts = afDB.list('post').valueChanges();
   }
