@@ -13,6 +13,8 @@ import  {SubirPage} from '../pages/subir/subir';
 //pipes
 import { PipesModule } from './../pipes/pipes.module';
 
+import { Camera} from '@ionic-native/camera';
+
 //firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
@@ -52,6 +54,7 @@ var firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
