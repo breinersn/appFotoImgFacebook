@@ -5,6 +5,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs/Observable';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 
 @Component({
   selector: 'page-subir',
@@ -16,7 +17,8 @@ export class SubirPage {
   titulo: string;
   fotoCamara: string;
 
-  constructor(private viewCtrl:ViewController, afDB: AngularFireDatabase,private camera:Camera) {
+  constructor(private viewCtrl:ViewController, afDB: AngularFireDatabase,
+    private camera:Camera, private imagePicker: ImagePicker) {
     this.posts = afDB.list('post').valueChanges();
   }
 
@@ -34,13 +36,29 @@ export class SubirPage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
      this.fotoCamara = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
      // Handle error
      console.log("ERROR EN CAMARA", JSON.stringify(err));
     });
+  }
 
+  mostrar_imagen(){
+
+    const options: ImagePickerOptions = {
+
+      quality: 70,
+      outputType: 1,
+      maximumImagesCount: 1
+    }
+
+    this.imagePicker.getPictures(options).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+          this.fotoCamara = 'data:image/jpeg;base64,' + results[i];
+      }
+    }, (err) => {
+      // Handle error
+     console.log("ERROR EN CAMARA", JSON.stringify(err));
+    });
   }
 }
